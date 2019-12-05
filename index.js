@@ -16,7 +16,7 @@ mongoose.connect('mongodb+srv://stan61rus:753538@cluster0-pmcuq.mongodb.net/test
 app.set('views', './views');
 app.set('view engine', 'hbs');
 
-// Роутер страниц по GET запросам
+// Роутер - обработчик запросов
 app.use('/', router);
 
 // Запускаем приложение на порту 3000

@@ -5,7 +5,28 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <h1>Контакты</h1>
-    <p>Электронный адрес: admin@mycorp.com</p>
+    <input type="text" name="телефон" id="phone">
+    <input type="text" name="емейл" id="email">
+    <input type="button" id="btn" onclick="send()" value="send">
+  <script>
+    function send(){
+      // объект для отправки
+      
+        const user = {
+            email: document.getElementById('email').value,
+            phone: document.getElementById('phone').value
+        };
+        console.log(user)
+        const json = JSON.stringify(user);
+        const request = new XMLHttpRequest();
+        request.open("POST", "http://localhost:3000");
+        request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
+        request.onreadystatechange = function () {
+                if (request.readyState == 4 && request.status == 200)
+                    document.getElementById("output").innerHTML=request.responseText;
+        }
+        request.send(json);
+    }
+  </script>
 </body>
 <html>

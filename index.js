@@ -28,6 +28,10 @@ app.post('/addUser', function (req, res) {
   user.save().then(() => res.send('OK'));
 });
 
+app.get('/getPhoneNumber', function (req, res) {
+  res.render('getPhoneNumber.hbs');
+  });
+
 // Запускаем приложение на порту 3000
 app.listen(3000, function () {
     console.log('Example app listening on port 3000!');

@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Контакты</title>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 <body>
   <div>
-    <label for="phone">Enter your phone number:</label>
-    <input type="tel" id="phone" name="phone" required>
-  </div><br>
-  <div>
-    <label for="email">Введите E-mail:</label>
+    <label for="email">Выслать пароль:</label>
     <input type="email" id="email" size="30" required>
   </div><br>
-    <input type="button" id="btn" onclick="send()" value="Add user">
+    <input type="button" id="btn" onclick="getPhoneNumber()" value="Получить телефон">
     <span id="output"></span>
-    <a href="http://localhost:3000/getPhoneNumber">Сбросить пароль</a>
-  <script>
-    function send(){
+
+    <script>
+    function getPhoneNumber(){
       // объект для отправки
       
         const user = {
-            email: document.getElementById('email').value,
-            phone: document.getElementById('phone').value
+            email: document.getElementById('email').value
         };
         const json = JSON.stringify(user);
         const request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:3000/addUser");
+        request.open("POST", "http://localhost:3000/getPhoneNumber");
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200)
@@ -34,8 +31,7 @@
         }
         request.send(json);
         document.getElementById('email').value = '';
-        document.getElementById('phone').value = '';
     }
   </script>
 </body>
-<html>
+</html>

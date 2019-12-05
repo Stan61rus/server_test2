@@ -1,6 +1,14 @@
 var express = require('express');
+const app = express();
 var router = express.Router();
-const User = require('./models/user')
+const User = require('./models/user');
+const bodyParser = require('body-parser');
+
+// Настройки конструктора Handlebars
+app.set('views', './views');
+app.set('view engine', 'hbs');
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // Показываем страничку по адресу
 router.get('/', function (req, res) {

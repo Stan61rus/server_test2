@@ -23,10 +23,9 @@ app.get('/', function (req, res) {
   res.render('index.hbs');
   });
 
-app.post('/', function (req, res) {
+app.post('/addUser', function (req, res) {
   const user = new User({ email: req.body.email , phone: req.body.phone });
-  user.save().then(() => console.log('ОК'));
-  res.end()
+  user.save().then(() => res.send('OK'));
 });
 
 // Запускаем приложение на порту 3000

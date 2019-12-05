@@ -5,9 +5,16 @@
     <meta charset="utf-8" />
 </head>
 <body>
-    <input type="text" name="телефон" id="phone">
-    <input type="text" name="емейл" id="email">
-    <input type="button" id="btn" onclick="send()" value="send">
+  <div>
+    <label for="phone">Enter your phone number:</label>
+    <input type="tel" id="phone" name="phone" required>
+  </div><br>
+  <div>
+    <label for="email">Введите E-mail:</label>
+    <input type="email" id="email" size="30" required>
+  </div><br>
+    <input type="button" id="btn" onclick="send()" value="Add user">
+    <span id="output"></span>
   <script>
     function send(){
       // объект для отправки
@@ -16,16 +23,17 @@
             email: document.getElementById('email').value,
             phone: document.getElementById('phone').value
         };
-        console.log(user)
         const json = JSON.stringify(user);
         const request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:3000");
+        request.open("POST", "http://localhost:3000/addUser");
         request.setRequestHeader('Content-type', 'application/json; charset=utf-8');
         request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200)
                     document.getElementById("output").innerHTML=request.responseText;
         }
         request.send(json);
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
     }
   </script>
 </body>

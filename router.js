@@ -31,7 +31,7 @@ router.post('/getPhoneNumber', async function (req, res) {
         if (userInCollectin.length !== 0) {
             // Тут мы оправим письмо
     } else {
-        res.send('Email существует')
+        res.send('Email не существует')
     }
   });
 

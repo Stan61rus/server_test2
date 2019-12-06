@@ -26,4 +26,13 @@ router.post('/addUser', async function (req, res) {
     }
   });
 
+router.post('/getPhoneNumber', async function (req, res) {
+    const userInCollectin = await User.find({ email: req.body.email});
+        if (userInCollectin.length !== 0) {
+            // Тут мы оправим письмо
+    } else {
+        res.send('Email существует')
+    }
+  });
+
 module.exports = router;

@@ -16,10 +16,14 @@ router.get('/getPhoneNumber', function (req, res) {
     res.render('getPhoneNumber.hbs');
 });
 
-router.post('/addUser', function (req, res) {
-    console.log(req.body)
-    const user = new User({ email: req.body.email , phone: req.body.phone });
-    user.save().then(() => res.send('OK'));
+router.post('/addUser', async function (req, res) {
+    const userInCollectin = await User.find({ email: req.body.email});
+    if (userInCollectin.length == 0) {
+        const user = new User({ email: req.body.email , phone: req.body.phone });
+        user.save().then(() => res.send('Email добавлен'));
+    } else {
+        res.send('Email существует')
+    }
   });
 
 module.exports = router;

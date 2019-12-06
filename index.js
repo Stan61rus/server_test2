@@ -4,6 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const router = require('./router');
 const bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -11,6 +12,7 @@ app.use(bodyParser.json());
 mongoose.connect(process.env.MONGODB)
   .then(() => console.log('MongoDB start'))
   .catch(err => console.log(err));
+
 
 // Роутер - обработчик запросов
 app.use('/', router);

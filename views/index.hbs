@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <title>Контакты</title>
     <meta charset="utf-8" />
 </head>
 <body>
-  <div>
-    <label for="phone">Enter your phone number:</label>
-    <input type="tel" id="phone" name="phone" required>
-  </div><br>
-  <div>
-    <label for="email">Введите E-mail:</label>
-    <input type="email" id="email" size="30" required>
-  </div><br>
-    <input type="button" id="btn" onclick="send()" value="Add user">
-    <span id="output"></span><br>
-    <a href="http://localhost:3000/getPhoneNumber">Получить телефон по Email</a>
+  <div class="container">
+
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <a href="/getPhoneNumber">Получить телефон по Email</a>
+      </li>
+    </ul>
+
+    <form>
+          <div class="form-group">
+            <label for="phone">Введите номер</label>
+            <input type="tel" id="phone" name="phone" class="form-control" required>
+          </div><br>
+          <div class="form-group">
+            <label for="email">Введите E-mail:</label>
+            <input type="email" id="email" size="30" class="form-control" required>
+          </div><br>
+            <input type="button" id="btn" onclick="send()" value="Add user" class="btn btn-primary"><br>
+      </form>
+      <div class="container">
+        <div id="output" class="alert"></div>
+      </div>
+  </div>
+            
   <script>
     function send(){
       // объект для отправки
@@ -31,6 +45,8 @@
         request.onreadystatechange = function () {
                 if (request.readyState == 4 && request.status == 200)
                     document.getElementById("output").innerHTML=request.responseText;
+                    document.getElementById("output").classList.add("alert-success");
+
         }
         request.send(json);
         document.getElementById('email').value = '';

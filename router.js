@@ -8,15 +8,17 @@ const crypto = require('./crypto')
 app.set('views', './views');
 app.set('view engine', 'hbs');
 
-// Показываем страничку по адресу
+// Отдает главную страницу
 router.get('/', function (req, res) {
     res.render('index.hbs');
 });
 
+// Отдат страницу для получения номера телефона
 router.get('/getPhoneNumber', function (req, res) {
     res.render('getPhoneNumber.hbs');
 });
 
+// Добавляет в базу юзера с зашифрованным E-mail (Если такого еще нет)
 router.post('/addUser', async function (req, res) {
     const email = crypto.encrypt(new Buffer(req.body.email, "utf8"))
     const userInCollectin = await User.find({ email: email});
@@ -28,6 +30,7 @@ router.post('/addUser', async function (req, res) {
     }
   });
 
+// Получает пользователя из БД и отпраляет на почту пользователя
 router.post('/getPhoneNumber', async function (req, res) {
     const email = crypto.encrypt(new Buffer(req.body.email, "utf8"))
     const userInCollectin = await User.find({ email: email});

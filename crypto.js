@@ -1,4 +1,5 @@
 require('dotenv').config();
+// Функции для шифрования и рашифровки данных
 var crypto = require('crypto'),
     algorithm = process.env.ALGORITHM,
     password = process.env.PASSWORD;

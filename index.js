@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const router = require('./router');
 const bodyParser = require('body-parser');
 
+// Настройки для рашифровки POST запросов
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -17,7 +18,7 @@ mongoose.connect(process.env.MONGODB)
 // Роутер - обработчик запросов
 app.use('/', router);
 
-// Запускаем приложение на порту 3000
+// Запускаем приложение на порту из ENV
 app.listen(process.env.PORT, function () {
-    console.log('Example app listening on port 3000!');
+    console.log(`Example app listening on port ${process.env.PORT}!`);
   });

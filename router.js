@@ -32,6 +32,7 @@ router.post('/getPhoneNumber', async function (req, res) {
     const email = crypto.encrypt(new Buffer(req.body.email, "utf8"))
     const userInCollectin = await User.find({ email: email});
         if (userInCollectin.length !== 0) {
+            console.log(userInCollectin[0].phone)
             // Тут мы оправим письмо
     } else {
         res.send('Email не существует')

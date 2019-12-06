@@ -1,6 +1,7 @@
+require('dotenv').config();
 var crypto = require('crypto'),
-    algorithm = 'aes-256-ctr',
-    password = 'd6F3Efeq';
+    algorithm = process.env.ALGORITHM,
+    password = process.env.PASSWORD;
 
 module.exports.encrypt = function (buffer){
   var cipher = crypto.createCipher(algorithm,password)
